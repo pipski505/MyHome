@@ -24,6 +24,10 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Provides a set of methods for retrieving and querying data from the Community
+ * domain entity.
+ */
 @Repository
 public interface CommunityRepository extends PagingAndSortingRepository<Community, Long> {
 
