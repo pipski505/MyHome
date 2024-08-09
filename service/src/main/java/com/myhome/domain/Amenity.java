@@ -34,6 +34,27 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.With;
 
+/**
+ * Represents a database entity for managing community amenities with associated
+ * community and booking item details, using JPA annotations.
+ * 
+ * - amenityId (String): is a unique string identifier for an Amenity entity.
+ * 
+ * - name (String): is a non-nullable string column in the Amenity entity.
+ * 
+ * - description (String): represents a string describing an amenity.
+ * 
+ * - price (BigDecimal): represents a non-nullable numeric value.
+ * 
+ * - community (Community): in this class represents a many-to-one relationship between
+ * an Amenity object and a Community object.
+ * 
+ * - communityHouse (CommunityHouse): in Amenity is a many-to-one relationship with
+ * CommunityHouse.
+ * 
+ * - bookingItems (Set<AmenityBookingItem>): represents a collection of AmenityBookingItem
+ * objects associated with this Amenity instance.
+ */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

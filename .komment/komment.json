@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1",
-    "updated_at": "2024-08-09T11:04:58.381Z",
+    "updated_at": "2024-08-09T11:06:01.677Z",
     "created_at": "2024-05-29T23:44:40.079Z",
     "pipelines": [
       "57f427c7-c3e0-4927-b86f-922e201a7836",
@@ -11,7 +11,8 @@
       "54b2a478-42c6-42f6-84f2-fc765fede807",
       "4571dbf6-37d9-4b6e-b4aa-066f085d359a",
       "a970b4a1-ffa7-4145-8bf5-ddebf99cc561",
-      "3c970e9c-f71f-4cb2-89af-723663cf90dc"
+      "3c970e9c-f71f-4cb2-89af-723663cf90dc",
+      "0b2d98fa-ffd9-4d78-822e-7833030b4bad"
     ]
   },
   "lookup": [
@@ -22,7 +23,8 @@
       "service/src/main/java/com/myhome/security/AppUserDetailsService.java",
       "service/src/main/java/com/myhome/services/CommunityService.java",
       "service/src/main/java/com/myhome/repositories/AmenityRepository.java",
-      "service/src/main/java/com/myhome/repositories/CommunityRepository.java"
+      "service/src/main/java/com/myhome/repositories/CommunityRepository.java",
+      "service/src/main/java/com/myhome/domain/Amenity.java"
     ]
   ]
 }
