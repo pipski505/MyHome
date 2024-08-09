@@ -25,6 +25,10 @@ import java.util.Optional;
 import java.util.Set;
 import org.springframework.data.domain.Pageable;
 
+/**
+ * Provides various operations for managing communities, community houses, and user
+ * roles within a community in a social network application.
+ */
 public interface CommunityService {
   Community createCommunity(CommunityDto communityDto);
 
