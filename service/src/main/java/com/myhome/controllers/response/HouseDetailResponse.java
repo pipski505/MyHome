@@ -21,6 +21,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Represents a response containing details about a house, specifically holding an
+ * instance of CommunityHouseDto.
+ * 
+ * - house (CommunityHouseDto): represents a CommunityHouseDto object.
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
