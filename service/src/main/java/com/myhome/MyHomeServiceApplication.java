@@ -24,33 +24,34 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * Initializes and configures a Spring Boot application with security features. It
- * defines a main method to start the application and registers a password encoder
- * bean using BCryptPasswordEncoder. The class also enables configuration properties
- * scanning.
+ * Is an entry point for Spring Boot application. It enables auto-configuration and
+ * property scanning and provides a bean definition for password encoding using BCrypt
+ * algorithm. The class serves as the primary configuration class for the Spring Boot
+ * application.
  */
 @SpringBootApplication
 @ConfigurationPropertiesScan
 public class MyHomeServiceApplication {
 
   /**
-   * Launches an application using the Spring Boot framework. It runs a class named
-   * `MyHomeServiceApplication`, passing command-line arguments to it. This initializes
-   * and starts the application.
+   * Initializes and runs a Spring-based application instance by calling the `run`
+   * method of `SpringApplication`. This method starts the application's embedded web
+   * server and initializes its dependencies. The `MyHomeServiceApplication` class is
+   * passed as an argument to specify the main application configuration.
    *
-   * @param args command-line arguments passed to the application when it is run.
+   * @param args array of command-line arguments passed to the Spring Boot application
+   * when it is launched.
    */
   public static void main(String[] args) {
     SpringApplication.run(MyHomeServiceApplication.class, args);
   }
 
   /**
-   * Defines a bean to configure password encoding using the BCrypt algorithm. It returns
-   * an instance of `BCryptPasswordEncoder`, which can be used to hash and verify
-   * passwords securely. This implementation provides a strong password hashing mechanism
-   * for authentication purposes.
+   * Returns an instance of a `BCryptPasswordEncoder`, which is a password encoder used
+   * to store and verify passwords securely. It uses the Blowfish encryption algorithm
+   * with a work factor, providing strong password hashing and salting capabilities.
    *
-   * @returns a new instance of `BCryptPasswordEncoder`.
+   * @returns an instance of a BCrypt password encoder.
    */
   @Bean
   public PasswordEncoder getPasswordEncoder() {
