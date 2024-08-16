@@ -36,11 +36,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Provides RESTful APIs for managing amenities in a community. The controller handles
- * requests to get all amenities, list all amenities for a specific community, add
- * new amenities, delete existing amenities, and update existing amenities. The
- * controller utilizes dependencies with the AmenityService and AmenityApiMapper
- * classes to perform these operations.
+ * Is responsible for handling RESTful API requests related to amenities, providing
+ * CRUD (Create, Read, Update, Delete) operations and retrieving amenity details.
  */
 @RestController
 @Slf4j
@@ -51,14 +48,14 @@ public class AmenityController implements AmenitiesApi {
   private final AmenityApiMapper amenityApiMapper;
 
   /**
-   * Retrieves amenity details for a given ID using a JPA service and maps the response
-   * to an `AmenityDetailsResponse`. It returns an `OK` response if the amenity is
-   * found, or a `NOT_FOUND` response otherwise.
-   * 
-   * @param amenityId identifier of the amenity for which details are requested.
-   * 
-   * @returns an `ResponseEntity` object representing a successful response with an
-   * `OK` status and the requested amenity details.
+   * Retrieves an amenity by ID, maps it to a response object using `amenityApiMapper`,
+   * and returns a ResponseEntity containing the response. If no matching amenity is
+   * found, it returns a ResponseEntity with a NOT_FOUND status code.
+   *
+   * @param amenityId identifier of an amenity for which details are requested and
+   * passed to the `amenitySDJpaService` to retrieve the corresponding data.
+   *
+   * @returns a ResponseEntity containing GetAmenityDetailsResponse.
    */
   @Override
   public ResponseEntity<GetAmenityDetailsResponse> getAmenityDetails(
@@ -70,14 +67,14 @@ public class AmenityController implements AmenitiesApi {
   }
 
   /**
-   * Retrieves a list of amenities from the database using `amenitySDJpaService`, maps
-   * them to `GetAmenityDetailsResponse` set using `amenityApiMapper`, and returns an
-   * `ResponseEntity` with the mapped response.
-   * 
-   * @param communityId ID of the community whose amenities will be listed.
-   * 
-   * @returns a set of `GetAmenityDetailsResponse` objects containing the details of
-   * all amenities for a given community.
+   * Retrieves a set of amenities for a given community ID, maps them to a set of
+   * `GetAmenityDetailsResponse` objects, and returns the response as an HTTP OK response
+   * entity.
+   *
+   * @param communityId String identifier for a community, used to filter and retrieve
+   * a set of amenities associated with it.
+   *
+   * @returns a ResponseEntity containing a Set of GetAmenityDetailsResponses.
    */
   @Override
   public ResponseEntity<Set<GetAmenityDetailsResponse>> listAllAmenities(
@@ -89,17 +86,19 @@ public class AmenityController implements AmenitiesApi {
   }
 
   /**
-   * Adds amenities to a community using the `amenitySDJpaService`. It creates a list
-   * of amenities, maps it to a response entity, and returns it as a successful response
-   * if the amenities are added successfully.
-   * 
-   * @param communityId id of the community to which the amenities will be added.
-   * 
-   * @param request AddAmenityRequest object containing the amenities to be added to
-   * the community.
-   * 
-   * @returns a `ResponseEntity` object representing a successful addition of amenities
-   * to a community, with a status code of `ok`.
+   * Creates amenities for a community specified by `communityId`. It accepts an
+   * `AddAmenityRequest` object containing amenities to be created, and returns a
+   * `ResponseEntity` with a list of added amenities. If no amenities are found, it
+   * returns a `ResponseEntity` with a 404 status code.
+   *
+   * @param communityId identifying value for a community, which is used to create
+   * amenities within that specific community.
+   *
+   * @param request request data containing amenities to be added to a community, which
+   * is retrieved from the body of the HTTP request and passed to the `createAmenities`
+   * method for processing.
+   *
+   * @returns a ResponseEntity containing an AddAmenityResponse.
    */
   @Override
   public ResponseEntity<AddAmenityResponse> addAmenityToCommunity(
@@ -112,14 +111,15 @@ public class AmenityController implements AmenitiesApi {
   }
 
   /**
-   * Deletes an amenity from the database based on the specified `amenityId`. If
-   * successful, it returns a `ResponseEntity` with a status code of `NO_CONTENT`. If
-   * unsuccessful, it returns a `ResponseEntity` with a status code of `NOT_FOUND`.
-   * 
-   * @param amenityId ID of an amenity to be deleted.
-   * 
-   * @returns a `ResponseEntity` object with a status code of either `NO_CONTENT` or
-   * `NOT_FOUND`, depending on whether the amenity was successfully deleted.
+   * Deletes an amenity with a specified ID and returns a response indicating success
+   * or failure. It calls the `deleteAmenity` method of `amenitySDJpaService` to perform
+   * the deletion, and based on its result, returns a `ResponseEntity` with either a
+   * 204 No Content status or a 404 Not Found status.
+   *
+   * @param amenityId ID of an amenity to be deleted, which is passed as a path variable
+   * and used by the `amenitySDJpaService` to delete the corresponding amenity record.
+   *
+   * @returns a response entity with either a HTTP NO CONTENT or NOT FOUND status.
    */
   @Override
   public ResponseEntity deleteAmenity(@PathVariable String amenityId) {
@@ -132,29 +132,25 @@ public class AmenityController implements AmenitiesApi {
   }
 
   /**
-   * Updates an amenity's details using a `UpdateAmenityRequest` object, and returns a
-   * response entity indicating whether the update was successful or not.
-   * 
-   * @param amenityId ID of the amenity being updated.
-   * 
-   * @param request UpdateAmenityRequest object containing the details of the amenity
-   * to be updated, which is then converted into an AmenityDto object and passed to the
-   * updateAmenity method of the amenitySDJpaService for updates.
-   * 
-   * 	- `@Valid`: Indicates that the request body must contain a valid JSON object
-   * representing an update amenity request.
-   * 	- `@RequestBody`: Represents the request body as a JSON object, which is used to
-   * map the request data to the `AmenityDto` class.
-   * 
-   * @returns a `ResponseEntity` object with a status code indicating whether the amenity
-   * was successfully updated or not.
-   * 
-   * 	- The response entity is of type `ResponseEntity`, which indicates that the
-   * operation was successful.
-   * 	- The status code of the response entity is `HttpStatus.NO_CONTENT`, indicating
-   * that the amenity was updated successfully.
-   * 	- The `build()` method is used to create a new response entity with the specified
-   * status code and headers.
+   * Updates an amenity based on a provided ID and updated request data. It maps the
+   * request to an AmenityDto object, sets the ID, and updates the amenity using a
+   * service method. If successful, it returns a HTTP response with a status of NO_CONTENT;
+   * otherwise, NOT_FOUND.
+   *
+   * @param amenityId identifier of the amenity to be updated, which is used to set the
+   * corresponding ID on the `AmenityDto` object.
+   *
+   * @param request UpdateAmenityRequest object, which is validated and then used to
+   * create an AmenityDto object through the amenityApiMapper's updateAmenityRequestToAmenityDto
+   * method.
+   *
+   * The `request` object has no direct properties to destructure as it's an instance
+   * of `UpdateAmenityRequest`, which is a custom class not provided in the code snippet.
+   *
+   * @returns a HTTP response with either NO CONTENT or NOT FOUND status.
+   *
+   * Returns a ResponseEntity with Void data type. The response entity's status is
+   * either HTTP NO_CONTENT (204) or NOT_FOUND (404).
    */
   @Override
   public ResponseEntity<Void> updateAmenity(@PathVariable String amenityId,
