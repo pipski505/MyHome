@@ -20,6 +20,12 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Is a unit test that verifies the successful registration of a user via an API
+ * endpoint. It sends a POST request with a CreateUserRequest object and checks the
+ * response status and content to ensure it matches expectations. The test also
+ * verifies that the registered user is stored in the database with matching values.
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(
     classes = MyHomeServiceApplication.class,
@@ -41,6 +47,12 @@ class UserControllerIntegrationTest {
   @Autowired
   private UserRepository userRepository;
 
+  /**
+   * Tests a user sign-up API. It creates a new user with a given name, email and
+   * password, verifies that the response is created, and checks that the returned user
+   * matches the input. Additionally, it asserts that the corresponding values are
+   * stored in the database.
+   */
   @Test
   void shouldSignUpSuccessful() {
     // Given a request
