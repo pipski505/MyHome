@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1",
-    "updated_at": "2024-08-12T20:44:55.101Z",
+    "updated_at": "2024-08-21T11:45:58.211Z",
     "created_at": "2024-05-29T23:44:40.079Z",
     "pipelines": [
       "57f427c7-c3e0-4927-b86f-922e201a7836",
@@ -16,7 +16,8 @@
       "6a970d5d-2b23-4d06-aab9-18c3016fc503",
       "c9839077-14a8-4dc1-8e6b-00481ad32101",
       "25082d48-dbed-4775-92dd-9cde391b6024",
-      "394f0b0a-939b-4f1b-8f6c-602b51b34509"
+      "394f0b0a-939b-4f1b-8f6c-602b51b34509",
+      "d4f93997-04e5-4f68-94d3-f23d9cad9b5a"
     ]
   },
   "lookup": [
@@ -33,7 +34,8 @@
       "service/src/test/java/com/myhome/security/jwt/AppJwtParamTest.java",
       "service/src/main/java/com/myhome/configuration/EmailTemplateConfig.java",
       "service/src/main/java/com/myhome/controllers/response/HouseDetailResponse.java",
-      "service/src/main/java/com/myhome/controllers/response/CreateUserResponse.java"
+      "service/src/main/java/com/myhome/controllers/response/CreateUserResponse.java",
+      "service/src/main/java/com/myhome/configuration/CorsConfig.java"
     ]
   ]
 }
