@@ -14,6 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
+/**
+ * Contains two unit tests for verifying the deleteBooking method of the BookingController
+ * class. The tests simulate different scenarios: successful deletion and non-existent
+ * booking.
+ */
 public class BookingControllerTest {
 
   private final String TEST_AMENITY_ID = "test-amenity-id";
@@ -25,11 +30,22 @@ public class BookingControllerTest {
   @InjectMocks
   private BookingController bookingController;
 
+  /**
+   * Initializes all mock objects associated with the current test instance using
+   * MockitoAnnotations. This is typically done to ensure that all necessary dependencies
+   * are properly set up before each test method execution. The result is a clean slate
+   * for each test, reducing the risk of unwanted side effects.
+   */
   @BeforeEach
   private void init() {
     MockitoAnnotations.initMocks(this);
   }
 
+  /**
+   * Deletes a booking by amenity ID and booking ID. It returns a response with no
+   * content and a status code of NO CONTENT (204). The deletion is verified to have
+   * occurred through the mock service.
+   */
   @Test
   void deleteBooking() {
     // given
@@ -46,6 +62,12 @@ public class BookingControllerTest {
     verify(bookingSDJpaService).deleteBooking(TEST_AMENITY_ID, TEST_BOOKING_ID);
   }
 
+  /**
+   * Tests the deletion of a booking that does not exist. It expects the response to
+   * be a 404 error and null body when trying to delete a non-existent booking. The
+   * test also verifies that the service's `deleteBooking` method was called with the
+   * correct parameters.
+   */
   @Test
   void deleteBookingNotExists() {
     // given
