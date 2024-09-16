@@ -25,8 +25,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
- * Provides a set of methods for retrieving and querying data from the Community
- * domain entity.
+ * Provides data access operations for the Community entity using Spring Data JPA
+ * annotations to manage database interactions.
  */
 @Repository
 public interface CommunityRepository extends PagingAndSortingRepository<Community, Long> {
