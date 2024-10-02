@@ -23,10 +23,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * Enables cross-origin resource sharing (CORS) in Spring MVC applications.
- * It exposes specific HTTP headers and allows credentials to be sent with requests
- * from specified origins.
- * The configuration is applied to all mappings within the application.
+ * Configures Cross-Origin Resource Sharing (CORS) in a Spring application.
  */
 @Configuration
 public class CorsConfig {
@@ -35,31 +32,26 @@ public class CorsConfig {
   private String[] allowedOrigins;
 
   /**
-   * Adds CORS (Cross-Origin Resource Sharing) configuration to enable cross-origin
-   * requests. It allows any origin, method, and header for all mappings, while exposing
-   * specific headers ("token" and "userId") and enabling credentials. This enables
-   * browser-based requests to a different domain.
+   * Configures CORS (Cross-Origin Resource Sharing) settings for the application,
+   * allowing all origins to access all methods and headers, with credentials enabled
+   * and exposing specific headers.
    *
-   * @returns a custom CORS configuration.
-   * It allows all origins to make requests to any path, method and header.
-   * It exposes specific headers.
+   * @returns a WebMvcConfigurer object that enables CORS for all origins and methods
+   * with specified exposed headers.
    *
-   * The output is an instance of WebMvcConfigurer.
-   * It has a single method, addCorsMappings, which configures CORS mappings for the
-   * application. The method adds a mapping for all URLs (/**), allowing cross-origin
-   * requests from specified origins and with specified headers, methods, and credentials.
+   * Allow all origins, methods, and headers. Exposed headers include 'token' and
+   * 'userId'. Credentials are allowed.
    */
   @Bean
   public WebMvcConfigurer corsConfigurer() {
     return new WebMvcConfigurer() {
       /**
-       * Configures CORS (Cross-Origin Resource Sharing) settings for a Spring application.
-       * It adds a mapping for all URLs, allowing origins specified by `allowedOrigins`,
-       * and exposes specific headers with credentials enabled. The '*' wildcard allows all
-       * HTTP methods and headers.
+       * Configures CORS (Cross-Origin Resource Sharing) for the application. It enables
+       * cross-origin requests from any origin, allowing any HTTP method and all headers,
+       * and exposes specific headers ("token" and "userId") while allowing credentials to
+       * be sent.
        *
-       * @param registry instance through which CORS mappings are defined and configured
-       * for the application.
+       * @param registry registry where CORS mappings are stored and managed.
        */
       @Override
       public void addCorsMappings(CorsRegistry registry) {
