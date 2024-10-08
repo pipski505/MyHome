@@ -13,10 +13,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 import java.util.Locale;
 
 /**
- * Is responsible for configuring email templates using Thymeleaf and
- * ResourceBundleMessageSource. It provides beans for message source and template
- * engine, which can be used to render email templates based on locale and encoding
- * settings.
+ * Configures email template settings for a Spring application using Thymeleaf.
  */
 @Configuration
 @RequiredArgsConstructor
@@ -26,12 +23,13 @@ public class EmailTemplateConfig {
   private final EmailTemplateLocalizationProperties localizationProperties;
 
   /**
-   * Initializes a `ResourceBundleMessageSource` bean, setting its properties from the
-   * `localizationProperties`. It specifies the resource bundle file name, default
-   * locale, encoding, and cache seconds for message retrieval. The function returns
-   * the configured `ResourceBundleMessageSource` instance.
-   * 
-   * @returns a ResourceBundleMessageSource bean.
+   * Configures and returns a ResourceBundleMessageSource bean for internationalized
+   * email messages.
+   * It loads messages from a resource bundle based on properties from the
+   * localizationProperties object.
+   * It sets the default locale, encoding, and cache seconds accordingly.
+   *
+   * @returns a `ResourceBundleMessageSource` instance configured with specified properties.
    */
   @Bean
   public ResourceBundleMessageSource emailMessageSource() {
@@ -44,13 +42,15 @@ public class EmailTemplateConfig {
   }
 
   /**
-   * Configures a Spring Template Engine for Thymeleaf, setting up a resolver for
-   * templates and an engine message source from ResourceBundleMessageSource.
-   * 
-   * @param emailMessageSource ResourceBundleMessageSource used to resolve messages and
-   * text for Thymeleaf templates by the SpringTemplateEngine.
-   * 
-   * @returns an instance of `SpringTemplateEngine`.
+   * Configures a SpringTemplateEngine instance with a Thymeleaf template resolver and
+   * sets the message source for the template engine to the provided ResourceBundleMessageSource
+   * instance.
+   *
+   * @param emailMessageSource source of message values for the SpringTemplateEngine,
+   * allowing it to resolve messages in Thymeleaf templates.
+   *
+   * @returns a SpringTemplateEngine object configured with a template resolver and
+   * message source.
    */
   @Bean
   public SpringTemplateEngine thymeleafTemplateEngine(ResourceBundleMessageSource emailMessageSource) {
@@ -61,18 +61,16 @@ public class EmailTemplateConfig {
   }
 
   /**
-   * Creates and configures a Thymeleaf template resolver instance. It sets various
-   * properties such as prefix, suffix, template mode, character encoding, and cacheability
-   * based on input values from the `templateProperties`. The configured resolver is
-   * then returned for use.
-   * 
-   * @returns a configured Thymeleaf template resolver object.
-   * 
-   * Set prefix specifies the directory where templates are located.
-   * Suffix is set to a specific format for the template files.
-   * Template mode determines how templates will be processed.
-   * Character encoding specifies the character set used in the template files.
-   * Cacheable property controls whether or not the resolved templates can be cached.
+   * Configures a ClassLoaderTemplateResolver for Thymeleaf templates, setting properties
+   * such as prefix, suffix, template mode, character encoding, and cacheability based
+   * on provided template properties.
+   *
+   * @returns a Thymeleaf template resolver object configured with specified properties.
+   *
+   * It is an instance of `ClassLoaderTemplateResolver`, a Thymeleaf template resolver.
+   * It has a prefix set to the template path, possibly appended with a file separator.
+   * Its suffix, template mode, character encoding, and cacheability are determined by
+   * the `templateProperties`.
    */
   private ITemplateResolver thymeleafTemplateResolver() {
     ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();

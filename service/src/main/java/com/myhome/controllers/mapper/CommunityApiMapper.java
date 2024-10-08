@@ -30,6 +30,10 @@ import java.util.Set;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+/**
+ * Provides a mapping between domain objects and API response objects using the
+ * MapStruct library.
+ */
 @Mapper
 public interface CommunityApiMapper {
   CommunityDto createCommunityRequestToCommunityDto(CreateCommunityRequest request);

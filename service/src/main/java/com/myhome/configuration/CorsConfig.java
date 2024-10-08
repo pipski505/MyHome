@@ -23,7 +23,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * Configures Cross-Origin Resource Sharing (CORS) in a Spring application.
+ * Configures cross-origin resource sharing for a Spring application.
  */
 @Configuration
 public class CorsConfig {
@@ -32,26 +32,24 @@ public class CorsConfig {
   private String[] allowedOrigins;
 
   /**
-   * Configures CORS (Cross-Origin Resource Sharing) settings for the application,
-   * allowing all origins to access all methods and headers, with credentials enabled
-   * and exposing specific headers.
+   * Configures cross-origin resource sharing for all web requests by allowing any
+   * origin, method, and header, and exposing specific headers, enabling credentials
+   * to be sent.
    *
-   * @returns a WebMvcConfigurer object that enables CORS for all origins and methods
-   * with specified exposed headers.
+   * @returns a WebMvcConfigurer object that enables CORS for all origins and methods.
    *
-   * Allow all origins, methods, and headers. Exposed headers include 'token' and
-   * 'userId'. Credentials are allowed.
+   * Enable CORS for all URLs with wildcard mapping "/**".
    */
   @Bean
   public WebMvcConfigurer corsConfigurer() {
     return new WebMvcConfigurer() {
       /**
-       * Configures CORS (Cross-Origin Resource Sharing) for the application. It enables
-       * cross-origin requests from any origin, allowing any HTTP method and all headers,
-       * and exposes specific headers ("token" and "userId") while allowing credentials to
-       * be sent.
+       * Configures CORS (Cross-Origin Resource Sharing) settings for a web application.
+       * It adds a mapping for all URLs, allowing origins specified by `allowedOrigins`,
+       * and exposes specific headers.
        *
-       * @param registry registry where CORS mappings are stored and managed.
+       * @param registry configuration object for handling CORS (Cross-Origin Resource
+       * Sharing) mappings.
        */
       @Override
       public void addCorsMappings(CorsRegistry registry) {

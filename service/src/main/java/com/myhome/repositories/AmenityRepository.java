@@ -24,8 +24,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 /**
- * Extends JpaRepository and provides two methods for retrieving an Amenity by its
- * ID, with optional fetching of related data.
+ * Extends the JpaRepository interface, providing data access to Amenity entities,
+ * with custom queries for retrieving amenity data.
  */
 public interface AmenityRepository extends JpaRepository<Amenity, Long> {
 

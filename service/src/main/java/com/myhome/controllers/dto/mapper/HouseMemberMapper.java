@@ -21,6 +21,9 @@ import com.myhome.model.HouseMemberDto;
 import java.util.Set;
 import org.mapstruct.Mapper;
 
+/**
+ * Maps HouseMember and HouseMemberDto objects to each other for data transfer.
+ */
 @Mapper
 public interface HouseMemberMapper {
   Set<com.myhome.model.HouseMember> houseMemberSetToRestApiResponseHouseMemberSet(

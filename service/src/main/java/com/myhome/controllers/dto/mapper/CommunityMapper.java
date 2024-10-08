@@ -20,6 +20,9 @@ import com.myhome.controllers.dto.CommunityDto;
 import com.myhome.domain.Community;
 import org.mapstruct.Mapper;
 
+/**
+ * Defines a mapping between a CommunityDto object and a Community object.
+ */
 @Mapper
 public interface CommunityMapper {
 
