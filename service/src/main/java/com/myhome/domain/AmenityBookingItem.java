@@ -22,18 +22,18 @@ import java.time.LocalDateTime;
 import javax.persistence.*;
 
 /**
- * Represents an entity that encapsulates information about an amenity booking,
- * including booking details and associated entities.
+ * Represents a data entity for booking items of amenities in a system, inheriting
+ * from a base entity class.
  *
- * - amenityBookingItemId (String): is a unique string identifier for an AmenityBookingItem.
+ * - amenityBookingItemId (String): is a unique identifier for an AmenityBookingItem.
  *
- * - amenity (Amenity): represents a many-to-one relationship with an Amenity entity.
+ * - amenity (Amenity): represents a ManyToOne relationship with the Amenity entity.
  *
  * - bookingStartDate (LocalDateTime): represents the start date of a booking.
  *
  * - bookingEndDate (LocalDateTime): represents the end date of a booking.
  *
- * - bookingUser (User): represents a User entity in a many-to-one relationship.
+ * - bookingUser (User): represents the user who made the booking.
  */
 @Entity
 @AllArgsConstructor
