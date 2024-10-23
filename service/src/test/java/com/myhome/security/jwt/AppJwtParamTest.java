@@ -20,18 +20,16 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
 /**
- * Is a test class containing a single test method to validate the creation of an
- * AppJwt object using its builder pattern. The test creates an instance of AppJwt
- * with specific parameters and prints it to the console. This test ensures that the
- * AppJwt object can be successfully created with valid user information and expiration
- * date.
+ * Contains a single test method and is used for testing the creation of AppJwt objects.
+ * It utilizes the JUnit framework for testing purposes.
+ * The test method demonstrates the creation of an AppJwt object using a builder pattern.
  */
 class AppJwtParamTest {
 
   /**
-   * Creates an instance of the `AppJwt` class using a builder pattern, specifying a
-   * user ID and expiration date set to the current time. The resulting object is then
-   * printed to the console.
+   * Tests the creation of an `AppJwt` object using a builder pattern, setting the
+   * `userId` and expiration time to the current date and time, and then prints the
+   * resulting `AppJwt` object to the console.
    */
   @Test
   void testParamCreationBuilder() {
