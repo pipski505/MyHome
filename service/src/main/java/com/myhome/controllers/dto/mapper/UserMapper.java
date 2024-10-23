@@ -21,7 +21,8 @@ import com.myhome.domain.User;
 import org.mapstruct.Mapper;
 
 /**
- * Provides conversion between DTO and entity object.
+ * Provides object mapping functionality for converting between UserDto and User
+ * entity objects.
  */
 @Mapper
 public interface UserMapper {

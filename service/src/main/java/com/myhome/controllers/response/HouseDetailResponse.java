@@ -21,6 +21,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Is a data transfer object for encapsulating house details information.
+ *
+ * - house (CommunityHouseDto): is a private field of type CommunityHouseDto.
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

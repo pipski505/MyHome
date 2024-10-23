@@ -16,6 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
+/**
+ * Is a unit test for the authentication functionality in the system. It tests the
+ * login process and verifies the expected response headers and status code.
+ */
 public class AuthenticationControllerTest {
 
   private static final String TEST_ID = "1";
@@ -28,11 +32,21 @@ public class AuthenticationControllerTest {
   @InjectMocks
   private AuthenticationController authenticationController;
 
+  /**
+   * Initializes mock objects for the current test class using MockitoAnnotations. This
+   * is a common setup step for JUnit tests that use Mockito for mocking dependencies.
+   * The function enables the testing framework to create mock instances for dependencies.
+   */
   @BeforeEach
   private void init() {
     MockitoAnnotations.initMocks(this);
   }
 
+  /**
+   * Simulates a successful login process by sending a `LoginRequest` to an authentication
+   * controller, which returns a response with OK status and headers containing a user
+   * ID and JWT token. The response is then verified for correctness.
+   */
   @Test
   void loginSuccess() {
     // given
@@ -54,10 +68,24 @@ public class AuthenticationControllerTest {
     verify(authenticationService).login(loginRequest);
   }
 
+  /**
+   * Returns an instance of `LoginRequest`. It initializes a `LoginRequest` object with
+   * default email and password values, TEST_EMAIL and TEST_PASSWORD respectively. The
+   * created object represents a default login request for the application.
+   *
+   * @returns a `LoginRequest` object with email and password set.
+   */
   private LoginRequest getDefaultLoginRequest() {
     return new LoginRequest().email(TEST_EMAIL).password(TEST_PASSWORD);
   }
 
+  /**
+   * Creates and returns an instance of `AuthenticationData`. It initializes the instance
+   * with a token named `TOKEN` and a test ID. The resulting object represents default
+   * authentication data for use in the application.
+   *
+   * @returns an instance of `AuthenticationData`.
+   */
   private AuthenticationData getDefaultAuthenticationData() {
     return new AuthenticationData(TOKEN, TEST_ID);
   }

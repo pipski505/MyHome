@@ -23,6 +23,10 @@ import com.myhome.model.UpdateAmenityRequest;
 import java.util.Set;
 import org.mapstruct.Mapper;
 
+/**
+ * Provides data mapping functionality between Amenity and its related data transfer
+ * objects.
+ */
 @Mapper
 public interface AmenityApiMapper {
 

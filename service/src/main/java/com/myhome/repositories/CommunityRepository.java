@@ -24,6 +24,10 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Extends Spring Data JPA for managing Community domain objects, providing methods
+ * for retrieving and checking the existence of Community instances.
+ */
 @Repository
 public interface CommunityRepository extends PagingAndSortingRepository<Community, Long> {
 

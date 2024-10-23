@@ -33,6 +33,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.With;
 
+/**
+ * Represents a domain entity in a database, encapsulating properties and relationships
+ * of a community house.
+ *
+ * - community (Community): represents a many-to-one relationship with the Community
+ * class.
+ *
+ * - name (String): represents the name of a CommunityHouse.
+ *
+ * - houseId (String): is a unique, non-null string identifier.
+ *
+ * - houseMembers (Set<HouseMember>): represents a collection of HouseMember objects
+ * associated with the CommunityHouse entity.
+ *
+ * - amenities (Set<Amenity>): Specifies a collection of amenities associated with
+ * the community house.
+ */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

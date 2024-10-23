@@ -24,9 +24,21 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
+/**
+ * Handles exceptions related to file uploads.
+ */
 @ControllerAdvice
 public class FileUploadExceptionAdvice {
 
+  /**
+   * Handles MaxUploadSizeExceededException exceptions,
+   * returns a ResponseEntity with a 414 status code and a JSON body containing an error
+   * message.
+   *
+   * @param exc exception thrown when the file size exceeds the maximum allowed size.
+   *
+   * @returns a ResponseEntity with a 414 status code and a JSON body containing a message.
+   */
   @ExceptionHandler(MaxUploadSizeExceededException.class)
   public ResponseEntity handleMaxSizeException(MaxUploadSizeExceededException exc) {
     return ResponseEntity.status(HttpStatus.PAYLOAD_TOO_LARGE).body(new HashMap<String, String>() {{
@@ -34,6 +46,15 @@ public class FileUploadExceptionAdvice {
     }});
   }
 
+  /**
+   * Handles IOException exceptions, specifically MaxUploadSizeExceededException, and
+   * returns a ResponseEntity with a status code of HttpStatus.CONFLICT and a JSON body
+   * containing an error message.
+   *
+   * @param exc exception that triggered the exception handler, specifically a `MaxUploadSizeExceededException`.
+   *
+   * @returns a ResponseEntity with HTTP status 409 and a JSON body containing a "message".
+   */
   @ExceptionHandler(IOException.class)
   public ResponseEntity handleIOException(MaxUploadSizeExceededException exc) {
     return ResponseEntity.status(HttpStatus.CONFLICT).body(new HashMap<String, String>() {{

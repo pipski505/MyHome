@@ -28,7 +28,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
- * Custom {@link UserDetailsService} catering to the need of service logic.
+ * Is a custom implementation of UserDetailsService, responsible for retrieving user
+ * details from a database and mapping them to a UserDetails object. It utilizes
+ * UserRepository and UserMapper to fetch and transform data. The class provides two
+ * methods: loadUserByUsername and getUserDetailsByUsername.
  */
 @Service
 @RequiredArgsConstructor
@@ -36,6 +39,20 @@ public class AppUserDetailsService implements UserDetailsService {
   private final UserRepository userRepository;
   private final UserMapper userMapper;
 
+  /**
+   * Retrieves a user with a specified email address from a database using a repository,
+   * and if found, returns a UserDetails object representing that user, otherwise throws
+   * an exception. The returned object includes the user's email, encrypted password,
+   * and boolean flags indicating account enabled and locked status.
+   *
+   * @param username email address of the user to be retrieved from the database and validated.
+   *
+   * @returns a `UserDetails` object representing the authenticated user.
+   *
+   * The returned object is an instance of the `UserDetails` class with the following
+   * attributes - email address, encrypted password, and a collection of authorities
+   * (empty in this case).
+   */
   @Override public UserDetails loadUserByUsername(String username)
       throws UsernameNotFoundException {
 
@@ -53,6 +70,16 @@ public class AppUserDetailsService implements UserDetailsService {
         Collections.emptyList());
   }
 
+  /**
+   * Retrieves a `User` entity from the database by its email address, which is provided
+   * as a username parameter. If the user is not found, it throws a `UsernameNotFoundException`.
+   * Otherwise, it converts the retrieved user to a `UserDto` object and returns it.
+   *
+   * @param username username to be used for searching and retrieving user details from
+   * the database using the `userRepository`.
+   *
+   * @returns a `UserDto` object.
+   */
   public UserDto getUserDetailsByUsername(String username) {
     com.myhome.domain.User user = userRepository.findByEmail(username);
     if (user == null) {

@@ -25,7 +25,8 @@ import java.util.Set;
 import org.mapstruct.Mapper;
 
 /**
- * Interface to automatic conversion by Mapstruct
+ * Automatically converts between data transfer objects and domain objects using the
+ * Mapstruct library.
  */
 @Mapper
 public interface UserApiMapper {

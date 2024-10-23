@@ -22,6 +22,10 @@ import java.util.Optional;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
+/**
+ * Extends Spring Data JPA's CrudRepository and provides custom methods for querying
+ * and retrieving HouseMember entities based on their identifiers and relationships.
+ */
 public interface HouseMemberRepository extends CrudRepository<HouseMember, Long> {
   Optional<HouseMember> findByMemberId(String memberId);
 

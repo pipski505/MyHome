@@ -20,6 +20,11 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Contains a single test method that simulates a successful user sign-up process by
+ * sending a POST request to a registration endpoint and verifies the response and
+ * database contents.
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(
     classes = MyHomeServiceApplication.class,
@@ -41,6 +46,11 @@ class UserControllerIntegrationTest {
   @Autowired
   private UserRepository userRepository;
 
+  /**
+   * Tests a user sign-up process by sending a request to create a user, verifying the
+   * response matches expectations, and checking that the user is stored in the database
+   * with the correct values.
+   */
   @Test
   void shouldSignUpSuccessful() {
     // Given a request
