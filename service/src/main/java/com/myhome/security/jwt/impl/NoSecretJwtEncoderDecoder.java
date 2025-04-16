@@ -30,11 +30,37 @@ import org.springframework.stereotype.Component;
 public class NoSecretJwtEncoderDecoder implements AppJwtEncoderDecoder {
   private static final String SEPARATOR = "\\+";
 
+  /**
+   * Parses an encoded JWT string into an `AppJwt` object, extracting the user ID and
+   * expiration time from the string, separated by a specified `SEPARATOR`. It uses the
+   * provided secret for parsing but does not appear to utilize it. The resulting object
+   * is then built and returned.
+   *
+   * @param encodedJwt base64-encoded JWT string that is to be decoded and its contents
+   * used to construct an `AppJwt` object.
+   *
+   * @param secret key used for verification or signature validation of the JWT, which
+   * is not used in this implementation.
+   *
+   * @returns an `AppJwt` object with a `userId` and an `expiration` date.
+   */
   @Override public AppJwt decode(String encodedJwt, String secret) {
     String[] strings = encodedJwt.split(SEPARATOR);
     return AppJwt.builder().userId(strings[0]).expiration(LocalDateTime.parse(strings[1])).build();
   }
 
+  /**
+   * Combines a user ID and an expiration date from an AppJwt object with a separator,
+   * returning the concatenated string. The AppJwt object's properties are accessed
+   * using getter methods.
+   *
+   * @param jwt AppJwt object containing user ID and expiration information.
+   *
+   * @param secret secret key used for encryption, but it is not being utilized in the
+   * provided function.
+   *
+   * @returns a string consisting of user ID and expiration timestamp separated by a separator.
+   */
   @Override public String encode(AppJwt jwt, String secret) {
     return jwt.getUserId() + SEPARATOR + jwt.getExpiration();
   }

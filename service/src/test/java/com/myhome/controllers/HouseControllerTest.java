@@ -49,6 +49,11 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
+/**
+ * Contains unit tests for the HouseController class, covering various scenarios such
+ * as listing houses, getting house details, adding house members, and deleting house
+ * members.
+ */
 class HouseControllerTest {
 
   private final String TEST_HOUSE_ID = "test-house-id";
@@ -67,11 +72,20 @@ class HouseControllerTest {
   @InjectMocks
   private HouseController houseController;
 
+  /**
+   * Initializes Mockito annotations for the current test class.
+   * MockitoAnnotations.initMocks(this) is used to enable mock objects for the test.
+   */
   @BeforeEach
   private void init() {
     MockitoAnnotations.initMocks(this);
   }
 
+  /**
+   * Tests the retrieval of all community houses by verifying that the controller returns
+   * a successful response with the expected list of houses when the service and mapper
+   * functions are called correctly.
+   */
   @Test
   void listAllHouses() {
     // given
@@ -95,6 +109,11 @@ class HouseControllerTest {
     assertEquals(expectedResponseBody, response.getBody());
   }
 
+  /**
+   * Tests the retrieval of house details by ID, verifying that a successful response
+   * is returned when the house exists, and that the correct service and mapper methods
+   * are called.
+   */
   @Test
   void getHouseDetails() {
     // given
@@ -123,6 +142,11 @@ class HouseControllerTest {
     verify(houseApiMapper).communityHouseToRestApiResponseCommunityHouse(testCommunityHouse);
   }
 
+  /**
+   * Tests the retrieval of house details when the specified ID does not exist, resulting
+   * in a 404 status code and an empty response body. It verifies that the house service
+   * is called with the provided ID and that the mapper is not called.
+   */
   @Test
   void getHouseDetailsNotExists() {
     // given
@@ -143,6 +167,11 @@ class HouseControllerTest {
         testCommunityHouse);
   }
 
+  /**
+   * Tests the retrieval of all members of a house.
+   * It calls the `houseController` to list all members of a specified house,
+   * then verifies the response status and body match expected values.
+   */
   @Test
   void listAllMembersOfHouse() {
     // given
@@ -174,6 +203,11 @@ class HouseControllerTest {
         new HashSet<>(testHouseMembers));
   }
 
+  /**
+   * Tests the controller's response when trying to list members of a house that does
+   * not exist. It verifies that a 404 status code is returned and no response body is
+   * present.
+   */
   @Test
   void listAllMembersOfHouseNotExists() {
     // given
@@ -191,6 +225,10 @@ class HouseControllerTest {
     verify(houseMemberMapper, never()).houseMemberSetToRestApiResponseHouseMemberSet(anySet());
   }
 
+  /**
+   * Adds new house members to a specified house, verifies the response, and checks if
+   * the correct mapper and service methods are called.
+   */
   @Test
   void addHouseMembers() {
     // given
@@ -231,6 +269,10 @@ class HouseControllerTest {
     verify(houseMemberMapper).houseMemberSetToRestApiResponseAddHouseMemberSet(testMembers);
   }
 
+  /**
+   * Tests the addition of house members with no members added, verifying a NOT_FOUND
+   * status code and a null response body.
+   */
   @Test
   void addHouseMembersNoMembersAdded() {
     // given
@@ -271,6 +313,10 @@ class HouseControllerTest {
         testMembers);
   }
 
+  /**
+   * Tests the successful deletion of a house member by verifying a 204 No Content HTTP
+   * response status and the absence of a response body.
+   */
   @Test
   void deleteHouseMemberSuccess() {
     // given
@@ -285,6 +331,11 @@ class HouseControllerTest {
     assertNull(response.getBody());
   }
 
+  /**
+   * Tests a scenario where deleting a house member fails. It simulates a house service
+   * that returns false, indicating failure, and verifies that the response status code
+   * is 404 (NOT_FOUND) and the response body is null.
+   */
   @Test
   void deleteHouseMemberFailure() {
     // given

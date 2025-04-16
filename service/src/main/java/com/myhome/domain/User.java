@@ -38,7 +38,24 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Entity identifying a valid user in the service.
+ * Represents a valid user in the service, encapsulating user information and
+ * associations with other entities such as communities and security tokens.
+ *
+ * - name (String): Stores a user's name.
+ *
+ * - userId (String): is a unique string that is not nullable.
+ *
+ * - email (String): is a unique, non-null string representing the user's email address.
+ *
+ * - emailConfirmed (boolean): indicates whether the user's email address has been confirmed.
+ *
+ * - encryptedPassword (String): stores a user's password in encrypted form.
+ *
+ * - communities (Set<Community>): represents a set of communities that the user is
+ * a part of, with lazy loading.
+ *
+ * - userTokens (Set<SecurityToken>): represents a collection of SecurityToken objects
+ * owned by the user.
  */
 @AllArgsConstructor
 @Getter

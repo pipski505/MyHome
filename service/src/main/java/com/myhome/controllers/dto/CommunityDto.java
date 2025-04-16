@@ -21,6 +21,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Represents a data transfer object for community information, encapsulating key
+ * attributes and relationships.
+ *
+ * - id (Long): represents a unique identifier for a community.
+ *
+ * - communityId (String): stores a string value.
+ *
+ * - name (String): represents the name of a community.
+ *
+ * - district (String): stores a string value.
+ *
+ * - admins (Set<UserDto>): holds a collection of UserDto objects.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

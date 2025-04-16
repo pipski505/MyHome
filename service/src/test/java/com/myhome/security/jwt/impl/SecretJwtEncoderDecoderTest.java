@@ -23,6 +23,10 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains unit tests for encoding and decoding JSON Web Tokens (JWTs) using a secret
+ * key.
+ */
 class SecretJwtEncoderDecoderTest {
   private static final String TEST_USER_ID = "test-user-id";
 
@@ -37,6 +41,11 @@ class SecretJwtEncoderDecoderTest {
       + "secretsecretsecretsecretsecretsecretsecretsecret"
       + "secretsecretsecretsecretsecretsecretsecretsecret";
 
+  /**
+   * Tests the successful encoding of a JWT. It creates a `SecretJwtEncoderDecoder`
+   * instance, builds a `AppJwt` object, and asserts that the `encode` method returns
+   * a non-null value when provided with a valid secret key.
+   */
   @Test
   void jwtEncodeSuccess() {
     // given
@@ -49,6 +58,11 @@ class SecretJwtEncoderDecoderTest {
     Assertions.assertNotNull(jwtEncoderDecoder.encode(appJwt, VALID_SECRET));
   }
 
+  /**
+   * Tests the behavior of a SecretJwtEncoderDecoder when encoding a JWT with an invalid
+   * secret key. It asserts that a WeakKeyException is thrown upon encoding. The function
+   * verifies the exception handling of the encoder.
+   */
   @Test
   void jwtEncodeFailWithException() {
     // given
@@ -60,6 +74,11 @@ class SecretJwtEncoderDecoderTest {
         () -> jwtEncoderDecoder.encode(appJwt, INVALID_SECRET));
   }
 
+  /**
+   * Verifies successful decoding of a JWT token. It encodes a test JWT with a secret
+   * key, decodes it back, and asserts that the decoded token matches the original
+   * token's user ID and expiration.
+   */
   @Test
   void jwtDecodeSuccess() {
     // given
@@ -77,6 +96,12 @@ class SecretJwtEncoderDecoderTest {
     Assertions.assertNotNull(decodedJwt.getExpiration());
   }
 
+  /**
+   * Verifies that a SecretJwtEncoderDecoder instance throws an ExpiredJwtException
+   * when attempting to decode an expired JWT token. This is done by calling the decode
+   * method with an expired JWT token and a valid secret. The test expects an exception
+   * to be thrown.
+   */
   @Test
   void jwtDecodeFailWithExpiredJwt() {
     // given

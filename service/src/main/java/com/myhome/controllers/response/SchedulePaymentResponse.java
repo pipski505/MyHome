@@ -21,6 +21,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Represents a data model for a scheduled payment response, encapsulating relevant
+ * information related to the payment.
+ *
+ * - paymentId (String): represents a unique identifier for a payment.
+ *
+ * - charge (BigDecimal): represents a monetary amount.
+ *
+ * - type (String): represents a string value.
+ *
+ * - description (String): stores a string value.
+ *
+ * - recurring (boolean): indicates whether a payment is recurring or not.
+ *
+ * - dueDate (String): is a string representing a date.
+ *
+ * - adminId (String): stores an identifier for an administrator.
+ *
+ * - memberId (String): stores the identifier of a member.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

@@ -23,12 +23,25 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.unit.DataSize;
 
+/**
+ * Defines a Spring configuration for file uploads.
+ * It sets a maximum file size limit.
+ * This limit applies to both file uploads and request sizes.
+ */
 @Configuration
 public class FileUploadConfig {
 
   @Value("${files.maxSizeKBytes}")
   private int maxSizeKBytes;
 
+  /**
+   * Configures multipart request handling by setting a maximum file size and request
+   * size. These sizes are specified in kilobytes using the `DataSize.ofKilobytes`
+   * method. The configured settings are then returned as a `MultipartConfigElement`.
+   *
+   * @returns a MultipartConfigElement instance, configured with specified max file and
+   * request sizes.
+   */
   @Bean
   public MultipartConfigElement multipartConfigElement() {
     MultipartConfigFactory factory = new MultipartConfigFactory();

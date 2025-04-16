@@ -20,6 +20,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Represents a data transfer object for community house information, encapsulating
+ * essential attributes.
+ *
+ * - houseId (String): represents a unique identifier for a house.
+ *
+ * - name (String): represents the name of a community house.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -19,8 +19,17 @@ package com.myhome.security.jwt;
 import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains a single test method, testParamCreationBuilder, which creates and prints
+ * an AppJwt object using a builder pattern.
+ */
 class AppJwtParamTest {
 
+  /**
+   * Tests the creation of an `AppJwt` object using a builder pattern, setting the user
+   * ID and expiration time to the current date and time, and then prints the resulting
+   * object to the console.
+   */
   @Test
   void testParamCreationBuilder() {
     AppJwt param = AppJwt.builder().userId("test-user-id").expiration(LocalDateTime.now()).build();

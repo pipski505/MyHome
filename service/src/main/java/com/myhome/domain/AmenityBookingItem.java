@@ -21,6 +21,20 @@ import lombok.*;
 import java.time.LocalDateTime;
 import javax.persistence.*;
 
+/**
+ * Represents a booking item for an amenity in a domain model, likely for a home
+ * management system.
+ *
+ * - amenityBookingItemId (String): is a unique identifier for an AmenityBookingItem.
+ *
+ * - amenity (Amenity): represents the amenity associated with the booking item.
+ *
+ * - bookingStartDate (LocalDateTime): represents the start date of a booking.
+ *
+ * - bookingEndDate (LocalDateTime): represents the end date of a booking.
+ *
+ * - bookingUser (User): represents a many-to-one relationship with a User entity.
+ */
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

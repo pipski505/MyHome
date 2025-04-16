@@ -33,6 +33,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.servlet.Filter;
 
+/**
+ * Configure Spring Security settings for a web application, disabling CSRF and session
+ * creation, and enabling CORS.
+ */
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -43,6 +47,16 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
   private final PasswordEncoder passwordEncoder;
   private final AppJwtEncoderDecoder appJwtEncoderDecoder;
 
+  /**
+   * Configures HTTP security settings, disabling CORS and CSRF protection, and enabling
+   * stateless session creation. It also defines authorization rules, permitting all
+   * requests to specified public URLs and requiring authentication for all other requests.
+   *
+   * @param http configuration of the HTTP security settings, allowing methods to be
+   * chained together to customize the security configuration.
+   *
+   * Enable CORS, disable CSRF and frame options, and stateless session creation.
+   */
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.cors().and().csrf().disable();
@@ -77,10 +91,23 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         .addFilterAfter(getCommunityFilter(), MyHomeAuthorizationFilter.class);
   }
 
+  /**
+   * Returns an instance of `CommunityAuthorizationFilter`,
+   *
+   * @returns an instance of the `CommunityAuthorizationFilter` class.
+   */
   private Filter getCommunityFilter() throws Exception {
     return new CommunityAuthorizationFilter(authenticationManager(), communityService);
   }
 
+  /**
+   * Configures an authentication manager with a user details service and a password
+   * encoder. The `userDetailsService` provides user data, and the `passwordEncoder`
+   * is used to hash passwords for secure storage.
+   *
+   * @param auth AuthenticationManagerBuilder, which is used to configure the authentication
+   * process.
+   */
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);

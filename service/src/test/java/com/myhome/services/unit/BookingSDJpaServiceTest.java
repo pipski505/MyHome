@@ -19,6 +19,9 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
+/**
+ * Provides unit tests for the BookingSDJpaService class.
+ */
 public class BookingSDJpaServiceTest {
 
   private static final String TEST_BOOKING_ID = "test-booking-id";
@@ -32,11 +35,21 @@ public class BookingSDJpaServiceTest {
   @InjectMocks
   private BookingSDJpaService bookingSDJpaService;
 
+  /**
+   * Initializes Mockito mocks for the current test class, making them available for
+   * use in test methods. This setup is typically used with JUnit tests to simplify
+   * mocking dependencies.
+   */
   @BeforeEach
   private void init() {
     MockitoAnnotations.initMocks(this);
   }
 
+  /**
+   * Tests the deletion of a booking item in a database. It verifies that the booking
+   * item is successfully deleted and that the correct repository methods are called
+   * to retrieve and delete the item.
+   */
   @Test
   void deleteBookingItem() {
     // given
@@ -56,6 +69,11 @@ public class BookingSDJpaServiceTest {
     verify(bookingItemRepository).delete(testBookingItem);
   }
 
+  /**
+   * Tests the deletion of a non-existent booking. It simulates a repository that returns
+   * an empty Optional when searching for the booking. The service is then called to
+   * delete the booking, and the test verifies that the deletion is not performed.
+   */
   @Test
   void deleteBookingNotExists() {
     // given
@@ -71,6 +89,11 @@ public class BookingSDJpaServiceTest {
     verify(bookingItemRepository, never()).delete(any());
   }
 
+  /**
+   * Tests the deletion of a booking amenity that does not exist. It simulates a scenario
+   * where an amenity with a specific ID does not match the one in the booking, resulting
+   * in a failed deletion.
+   */
   @Test
   void deleteBookingAmenityNotExists() {
     // given
@@ -90,6 +113,12 @@ public class BookingSDJpaServiceTest {
     verify(bookingItemRepository, never()).delete(any());
   }
 
+  /**
+   * Creates a new instance of `AmenityBookingItem` and initializes it with a specific
+   * `TEST_BOOKING_ID`.
+   *
+   * @returns an instance of `AmenityBookingItem` with `TEST_BOOKING_ID` as the `amenityBookingItemId`.
+   */
   private AmenityBookingItem getTestBookingItem() {
     return new AmenityBookingItem()
         .withAmenityBookingItemId(TEST_BOOKING_ID);

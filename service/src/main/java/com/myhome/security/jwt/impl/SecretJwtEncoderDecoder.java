@@ -34,6 +34,22 @@ import org.springframework.stereotype.Component;
 @Profile("default")
 public class SecretJwtEncoderDecoder implements AppJwtEncoderDecoder {
 
+  /**
+   * Verifies a JWT token using the provided secret key, extracts the user ID and
+   * expiration date from the token's claims, and returns an `AppJwt` object containing
+   * this information.
+   *
+   * @param encodedJwt JWT token to be decoded and its contents are used to extract the
+   * user ID and expiration date.
+   *
+   * @param secret secret key used for HMAC SHA-256 signature verification of the
+   * provided JWT.
+   *
+   * @returns an `AppJwt` object containing a user ID and a local date and time of expiration.
+   *
+   * The output returned by the `decode` function is an instance of `AppJwt`. It has
+   * two main attributes: `userId` and `expiration`.
+   */
   @Override public AppJwt decode(String encodedJwt, String secret) {
     Claims claims = Jwts.parserBuilder()
         .setSigningKey(Keys.hmacShaKeyFor(secret.getBytes()))
@@ -48,6 +64,18 @@ public class SecretJwtEncoderDecoder implements AppJwtEncoderDecoder {
         .build();
   }
 
+  /**
+   * Generates a JSON Web Token (JWT) based on the provided `AppJwt` object and secret
+   * key. It sets the subject to the user ID and expiration date, then signs the token
+   * using the HMAC SHA-512 algorithm.
+   *
+   * @param jwt AppJwt object, which contains the user ID and expiration time used to
+   * construct the encoded JWT.
+   *
+   * @param secret secret key used for HMAC SHA-512 signature generation.
+   *
+   * @returns a JSON Web Token (JWT) in compact form, signed with HS512 algorithm.
+   */
   @Override public String encode(AppJwt jwt, String secret) {
     Date expiration = Date.from(jwt.getExpiration().atZone(ZoneId.systemDefault()).toInstant());
     return Jwts.builder()

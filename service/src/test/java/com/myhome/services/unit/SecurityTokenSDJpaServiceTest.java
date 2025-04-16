@@ -24,6 +24,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * Contains three unit tests for the SecurityTokenSDJpaService class, verifying the
+ * creation of security tokens for password reset and email confirmation.
+ */
 public class SecurityTokenSDJpaServiceTest {
 
   private final Duration TEST_TOKEN_LIFETIME_SECONDS = Duration.ofDays(1);
@@ -34,6 +38,10 @@ public class SecurityTokenSDJpaServiceTest {
   @InjectMocks
   private SecurityTokenSDJpaService securityTokenSDJpaService;
 
+  /**
+   * Initializes Mockito and sets the lifetime of security tokens for password reset
+   * and email confirmation using ReflectionTestUtils, allowing for test-specific configuration.
+   */
   @BeforeEach
   private void init() {
     MockitoAnnotations.initMocks(this);
@@ -43,6 +51,10 @@ public class SecurityTokenSDJpaServiceTest {
         TEST_TOKEN_LIFETIME_SECONDS);
   }
 
+  /**
+   * Generates a password reset token for a user, saves it to the repository, and
+   * verifies its creation and expiry dates, token type, owner, and value.
+   */
   @Test
   void createSecurityToken() {
     // given
@@ -67,6 +79,10 @@ public class SecurityTokenSDJpaServiceTest {
     verify(securityTokenRepository).save(any());
   }
 
+  /**
+   * Generates a password reset token for a given user, saves it in a repository, and
+   * sets its creation and expiry dates with a specified lifetime.
+   */
   @Test
   void createPasswordResetToken() {
     // given
@@ -90,6 +106,10 @@ public class SecurityTokenSDJpaServiceTest {
     verify(securityTokenRepository).save(any());
   }
 
+  /**
+   * Generates a security token for email confirmation, saves it to the repository, and
+   * returns the token with a specific creation and expiry date, and a token owner.
+   */
   @Test
   void createEmailConfirmToken() {
     // given

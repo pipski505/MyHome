@@ -25,10 +25,26 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * This class is used to enrich the normal SchedulePaymentRequest with details relating to the admin
- * and house member in order to map to the User and HouseMember fields of payment successfully. By
- * doing this, you can avoid having to specify all the extra details in the request and just use the
- * IDs to get the data to enrich this request
+ * Extends and enriches the SchedulePaymentRequest class with additional admin and
+ * house member details.
+ *
+ * - adminEntityId (Long): represents the ID of an admin entity.
+ *
+ * - adminName (String): stores the name of the admin.
+ *
+ * - adminEmail (String): stores the email address of the admin.
+ *
+ * - adminEncryptedPassword (String): stores the encrypted password of the admin.
+ *
+ * - adminCommunityIds (Set<String>): stores a set of community IDs.
+ *
+ * - memberEntityId (Long): represents the ID of a house member.
+ *
+ * - houseMemberDocumentName (String): stores the document name of a house member.
+ *
+ * - houseMemberName (String): stores the name of a house member.
+ *
+ * - houseMemberHouseID (String): Stores a house ID.
  */
 @NoArgsConstructor
 @AllArgsConstructor

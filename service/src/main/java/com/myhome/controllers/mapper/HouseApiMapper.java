@@ -21,6 +21,10 @@ import com.myhome.model.GetHouseDetailsResponseCommunityHouse;
 import java.util.Set;
 import org.mapstruct.Mapper;
 
+/**
+ * Is a mapping interface that converts CommunityHouse domain objects to
+ * GetHouseDetailsResponseCommunityHouse API response objects.
+ */
 @Mapper
 public interface HouseApiMapper {
   Set<GetHouseDetailsResponseCommunityHouse> communityHouseSetToRestApiResponseCommunityHouseSet(

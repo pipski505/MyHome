@@ -25,6 +25,10 @@ import java.util.Optional;
 import java.util.Set;
 import org.springframework.data.domain.Pageable;
 
+/**
+ * Defines a contract for managing communities, allowing for CRUD operations, community
+ * administration, and house management.
+ */
 public interface CommunityService {
   Community createCommunity(CommunityDto communityDto);
 

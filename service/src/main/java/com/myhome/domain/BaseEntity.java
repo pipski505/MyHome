@@ -27,7 +27,10 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * Base class for all JPA Entities. Try not to expose id value outside of the service.
+ * Defines a base class for JPA entities with a unique identifier, implementing
+ * Serializable and providing basic data access functionality.
+ *
+ * - id (Long): is a Long representing the unique identifier of the entity.
  */
 @Data
 @NoArgsConstructor

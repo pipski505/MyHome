@@ -29,8 +29,24 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * Entity identifying a payment in the service. This could be an electricity bill, house rent, water
- * charge etc
+ * Represents an entity for managing payments in a service, encompassing various
+ * payment details and relationships with other entities.
+ *
+ * - paymentId (String): is a unique, non-nullable string field.
+ *
+ * - charge (BigDecimal): represents the amount of the payment.
+ *
+ * - type (String): represents the type of payment.
+ *
+ * - description (String): stores a payment description.
+ *
+ * - recurring (boolean): is a boolean indicating whether a payment is recurring.
+ *
+ * - dueDate (LocalDate): represents the date a payment is due.
+ *
+ * - admin (User): represents a User entity.
+ *
+ * - member (HouseMember): represents a HouseMember.
  */
 @AllArgsConstructor
 @NoArgsConstructor

@@ -34,7 +34,22 @@ import lombok.ToString;
 import lombok.With;
 
 /**
- * Entity identifying a valid user in the service.
+ * Represents an entity identifying a valid community in a service, encapsulating its
+ * properties and relationships with other entities.
+ *
+ * - admins (Set<User>): represents a set of users in the community, with lazy loading.
+ *
+ * - houses (Set<CommunityHouse>): represents a collection of CommunityHouse objects
+ * associated with the Community entity.
+ *
+ * - name (String): is a non-null string that uniquely identifies a community.
+ *
+ * - communityId (String): is a unique, non-null string identifier for a community.
+ *
+ * - district (String): represents a non-null string identifier for a community's location.
+ *
+ * - amenities (Set<Amenity>): represents a collection of amenities associated with
+ * a community.
  */
 @AllArgsConstructor
 @NoArgsConstructor
